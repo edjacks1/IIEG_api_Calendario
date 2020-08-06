@@ -1,0 +1,3143 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Api",
+        "description": "Lumen Swagger Api",
+        "license": {
+            "name": "my api"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api/v1",
+            "description": "Api Documentations my api"
+        }
+    ],
+    "paths": {
+        "/permission": {
+            "get": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "List permissions",
+                "description": "Returns data of permissions",
+                "operationId": "List",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Store permission",
+                "operationId": "Store",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "slug"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "permission name",
+                                        "type": "string"
+                                    },
+                                    "slug": {
+                                        "description": "slug name",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "permission description",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/permission/{id}": {
+            "get": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Show permission",
+                "description": "Returns data of permission",
+                "operationId": "Show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Permission id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Update permission",
+                "operationId": "Update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Permission id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "slug"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "permission Name",
+                                        "type": "string"
+                                    },
+                                    "slug": {
+                                        "description": "slug name",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "permission description",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Delete existing permission",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deletepermission",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "permission id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/role": {
+            "get": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "List Roles",
+                "description": "Returns data of roles",
+                "operationId": "List",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Store Role",
+                "operationId": "Store",
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "role name",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "role description",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/role/{id}": {
+            "get": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Show Role",
+                "description": "Returns data of role",
+                "operationId": "Show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Role id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Update Role",
+                "operationId": "Update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Role id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Role Name",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Role description",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Delete existing Role",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteRole",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Role id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/role/assignPermission/{id}": {
+            "put": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Assing Permission to Role",
+                "operationId": "Update Permissions",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Role id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "permissions": {
+                                        "description": "Permissions Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/role/getPermission/{id}": {
+            "get": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Show Role Permission",
+                "description": "Returns permissions of role",
+                "operationId": "Show Permission",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Role id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "List users",
+                "description": "Returns data of users",
+                "operationId": "List",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Store User",
+                "operationId": "Store",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "last_name",
+                                    "email",
+                                    "organization_id",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "nombre de usuario",
+                                        "type": "string"
+                                    },
+                                    "second_name": {
+                                        "description": "segundo nombre",
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "description": "Apellido paterno",
+                                        "type": "string"
+                                    },
+                                    "maternal_surname": {
+                                        "description": "Apellido materno",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "usuario del sistema",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Teléfono",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "contraseña de usuario",
+                                        "type": "string"
+                                    },
+                                    "organization_id": {
+                                        "description": "id Organización",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Show User",
+                "description": "Returns data of user",
+                "operationId": "Show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update User",
+                "operationId": "Update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "last_name",
+                                    "email",
+                                    "organization_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "nombre de usuario",
+                                        "type": "string"
+                                    },
+                                    "second_name": {
+                                        "description": "segundo nombre",
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "description": "Apellido paterno",
+                                        "type": "string"
+                                    },
+                                    "maternal_surname": {
+                                        "description": "Apellido materno",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "usuario del sistema",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Teléfono",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "contraseña de usuario",
+                                        "type": "string"
+                                    },
+                                    "organization_id": {
+                                        "description": "id Organización",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete existing User",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/user/assignRole/{id}": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Assing Role to User",
+                "operationId": "Update Role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "roles": {
+                                        "description": "Role Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/user/getRole/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Show User Roles",
+                "description": "Returns role of user",
+                "operationId": "Show Role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/user/checkEmail": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Check Email available",
+                "operationId": "Check Email",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "description": "email de usuario",
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "description": "id usuario",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login de usuario",
+                "operationId": "Login",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "description": "usuario del sistema",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "contraseña de usuario",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success Request"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/auth/validateToken": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Token de usuario",
+                "operationId": "ValidateToken",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "description": "Token de usuario",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success Request"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/auth/refreshToken": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Refrescar el token",
+                "operationId": "RefreshToken",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "refresh_token": {
+                                        "description": "Token para refrescar",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "operationId": "Logout",
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "refresh_token": {
+                                        "description": "Token para refrescar",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/eventTag": {
+            "get": {
+                "tags": [
+                    "EventTag"
+                ],
+                "summary": "List event tags",
+                "description": "Returns data of event tags",
+                "operationId": "listeventTag",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "EventTag"
+                ],
+                "summary": "Store Event Tag",
+                "operationId": "storeeventTag",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de la etiqueta del evento",
+                                        "type": "string"
+                                    },
+                                    "color": {
+                                        "description": "Color en Hexadecimal asignado a la etiqueta",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/eventTag/{id}": {
+            "get": {
+                "tags": [
+                    "EventTag"
+                ],
+                "summary": "Show event tag",
+                "description": "Returns data of Event tag",
+                "operationId": "showeventTag",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event Tag id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "EventTag"
+                ],
+                "summary": "Update event tag",
+                "operationId": "updateeventTag",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event tag id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de la etiqueta del evento",
+                                        "type": "string"
+                                    },
+                                    "color": {
+                                        "description": "Color en Hexadecimal asignado a la etiqueta",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "EventTag"
+                ],
+                "summary": "Delete existing event tag",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteeventTag",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event tag id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Event Tag Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/eventType": {
+            "get": {
+                "tags": [
+                    "EventType"
+                ],
+                "summary": "List event type",
+                "description": "Returns data of event types",
+                "operationId": "listeventType",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "EventType"
+                ],
+                "summary": "Store Event type",
+                "operationId": "storeeventType",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de el tipo de evento",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripción del tipo de evento",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/eventType/{id}": {
+            "get": {
+                "tags": [
+                    "EventType"
+                ],
+                "summary": "Show event type",
+                "description": "Returns data of event type",
+                "operationId": "showeventType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event type id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "EventType"
+                ],
+                "summary": "Update event type",
+                "operationId": "updateeventType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event type id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de el tipo de evento",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del tipo de evento",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "EventType"
+                ],
+                "summary": "Delete existing event type",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteeventType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "event type id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Event Type Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/organization": {
+            "get": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "List organization",
+                "description": "Returns data of organizations",
+                "operationId": "List",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Store organization",
+                "operationId": "Store",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "abbreviation",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de la organización",
+                                        "type": "string"
+                                    },
+                                    "abbreviation": {
+                                        "description": "Abreviatura",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Telefono",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email",
+                                        "type": "string"
+                                    },
+                                    "x": {
+                                        "description": "Longitud de posición",
+                                        "type": "number"
+                                    },
+                                    "y": {
+                                        "description": "Latitud de posición",
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/organization/{id}": {
+            "get": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Show organization",
+                "description": "Returns data of organization",
+                "operationId": "Show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "organization id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Update organization",
+                "operationId": "Update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "organization id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "abbreviation",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de la organización",
+                                        "type": "string"
+                                    },
+                                    "abbreviation": {
+                                        "description": "Abreviatura",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Telefono",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email",
+                                        "type": "string"
+                                    },
+                                    "x": {
+                                        "description": "Longitud de posición",
+                                        "type": "number"
+                                    },
+                                    "y": {
+                                        "description": "Latitud de posición",
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Delete existing organization",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteorganization",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "organization id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/organization/assignPlace/{id}": {
+            "put": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Assing Place to Organization",
+                "operationId": "Update Organization",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Organization id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "places": {
+                                        "description": "Places Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/place": {
+            "get": {
+                "tags": [
+                    "Place"
+                ],
+                "summary": "List place",
+                "description": "Returns data of places",
+                "operationId": "List",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Place"
+                ],
+                "summary": "Store place",
+                "operationId": "Store",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de el lugar",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del lugar",
+                                        "type": "string"
+                                    },
+                                    "x": {
+                                        "description": "Longitud de posición",
+                                        "type": "number"
+                                    },
+                                    "y": {
+                                        "description": "Latitud de posición",
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/place/{id}": {
+            "get": {
+                "tags": [
+                    "Place"
+                ],
+                "summary": "Show place",
+                "description": "Returns data of place",
+                "operationId": "Show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "place id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Place"
+                ],
+                "summary": "Update place",
+                "operationId": "Update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "place id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de el lugar",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del lugar",
+                                        "type": "string"
+                                    },
+                                    "x": {
+                                        "description": "Longitud de posición",
+                                        "type": "number"
+                                    },
+                                    "y": {
+                                        "description": "Latitud de posición",
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Place"
+                ],
+                "summary": "Delete existing place",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteplace",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "place id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/resource": {
+            "get": {
+                "tags": [
+                    "Resource"
+                ],
+                "summary": "List resource",
+                "description": "Returns data of resources",
+                "operationId": "List",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Resource"
+                ],
+                "summary": "Store resource",
+                "operationId": "Store",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "owner",
+                                    "patrimonial_id",
+                                    "type_id",
+                                    "remark"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de el recurso",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del recurso",
+                                        "type": "string"
+                                    },
+                                    "owner": {
+                                        "description": "Dueño",
+                                        "type": "integer"
+                                    },
+                                    "patrimonial_id": {
+                                        "description": "Id patrimonio",
+                                        "type": "string"
+                                    },
+                                    "type_id": {
+                                        "description": "Tipo de recurso",
+                                        "type": "integer"
+                                    },
+                                    "remark": {
+                                        "description": "Remark",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/resource/{id}": {
+            "get": {
+                "tags": [
+                    "Resource"
+                ],
+                "summary": "Show resource",
+                "description": "Returns data of resource",
+                "operationId": "Show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "resource id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Resource"
+                ],
+                "summary": "Update resource",
+                "operationId": "Update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "resource id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "owner",
+                                    "patrimonial_id",
+                                    "type_id",
+                                    "remark"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de el recurso",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del recurso",
+                                        "type": "string"
+                                    },
+                                    "owner": {
+                                        "description": "Dueño",
+                                        "type": "integer"
+                                    },
+                                    "patrimonial_id": {
+                                        "description": "Id patrimonio",
+                                        "type": "string"
+                                    },
+                                    "type_id": {
+                                        "description": "Tipo de recurso",
+                                        "type": "integer"
+                                    },
+                                    "remark": {
+                                        "description": "Remark",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Resource"
+                ],
+                "summary": "Delete existing resource",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteresource",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "resource id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/resourceType": {
+            "get": {
+                "tags": [
+                    "ResourceType"
+                ],
+                "summary": "List resource type",
+                "description": "Returns data of resource types",
+                "operationId": "listResourceType",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "ResourceType"
+                ],
+                "summary": "Store resource type",
+                "operationId": "storeResourceType",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de el tipo de recurso",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del tipo de recurso",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/resourceType/{id}": {
+            "get": {
+                "tags": [
+                    "ResourceType"
+                ],
+                "summary": "Show resource type",
+                "description": "Returns data of resource type",
+                "operationId": "showResourceType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "resourceType id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "ResourceType"
+                ],
+                "summary": "Update resource type",
+                "operationId": "updateResourceType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Resource type id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de el tipo de recurso",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Descripcion del tipo de recurso",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "ResourceType"
+                ],
+                "summary": "Delete existing resource type",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteResourceType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "resource type id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Type Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/event/getEvents": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "List Events",
+                "operationId": "List Events",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "start_at",
+                                    "end_at"
+                                ],
+                                "properties": {
+                                    "start_at": {
+                                        "description": "Event Start",
+                                        "type": "string"
+                                    },
+                                    "end_at": {
+                                        "description": "Event End",
+                                        "type": "string"
+                                    },
+                                    "created_by": {
+                                        "description": "Created User Id",
+                                        "type": "integer"
+                                    },
+                                    "type": {
+                                        "description": "Event Type Id",
+                                        "type": "integer"
+                                    },
+                                    "guest": {
+                                        "description": "Guest Id",
+                                        "type": "integer"
+                                    },
+                                    "organizer": {
+                                        "description": "Organizer Id",
+                                        "type": "integer"
+                                    },
+                                    "resources_check": {
+                                        "description": "Resources check",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/event/{id}": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Show Event",
+                "description": "Returns data of a Event",
+                "operationId": "Show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Update Event",
+                "operationId": "Update Event",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "place_id",
+                                    "start_at",
+                                    "end_at",
+                                    "created_by",
+                                    "type",
+                                    "assistants"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Event name",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Description name",
+                                        "type": "string"
+                                    },
+                                    "place_id": {
+                                        "description": "Place Id",
+                                        "type": "integer"
+                                    },
+                                    "start_at": {
+                                        "description": "Event Start",
+                                        "type": "string"
+                                    },
+                                    "end_at": {
+                                        "description": "Event End",
+                                        "type": "string"
+                                    },
+                                    "created_by": {
+                                        "description": "Created User Id",
+                                        "type": "integer"
+                                    },
+                                    "type": {
+                                        "description": "Event Type Id",
+                                        "type": "integer"
+                                    },
+                                    "tag": {
+                                        "description": "Event Tag Id",
+                                        "type": "integer"
+                                    },
+                                    "organizers": {
+                                        "description": "Organizers Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "guests": {
+                                        "description": "Guests Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "resources": {
+                                        "description": "Resources Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Delete existing Event",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/event": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Create New Event",
+                "operationId": "Create Event",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "place_id",
+                                    "start_at",
+                                    "end_at",
+                                    "created_by",
+                                    "type",
+                                    "assistants"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Event name",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Description name",
+                                        "type": "string"
+                                    },
+                                    "place_id": {
+                                        "description": "Place Id",
+                                        "type": "integer"
+                                    },
+                                    "start_at": {
+                                        "description": "Event Start",
+                                        "type": "string"
+                                    },
+                                    "end_at": {
+                                        "description": "Event End",
+                                        "type": "string"
+                                    },
+                                    "created_by": {
+                                        "description": "Created User Id",
+                                        "type": "integer"
+                                    },
+                                    "type": {
+                                        "description": "Event Type Id",
+                                        "type": "integer"
+                                    },
+                                    "tag": {
+                                        "description": "Event Tag Id",
+                                        "type": "integer"
+                                    },
+                                    "organizers": {
+                                        "description": "Organizers Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "guests": {
+                                        "description": "Guests Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "resources": {
+                                        "description": "Resources Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/event/sendNotification": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Send Notification Event",
+                "operationId": "sendnotificationevent",
+                "requestBody": {
+                    "description": "Input data format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "place_id",
+                                    "start_at",
+                                    "end_at",
+                                    "created_by",
+                                    "type",
+                                    "assistants"
+                                ],
+                                "properties": {
+                                    "notification_type": {
+                                        "description": "Notification type [create,update]",
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "description": "Role name",
+                                        "type": "string"
+                                    },
+                                    "event_id": {
+                                        "description": "Event Id",
+                                        "type": "integer"
+                                    },
+                                    "created_by": {
+                                        "description": "Created User Id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/event/getResources/{id}": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Show EventResource",
+                "description": "Returns Event resources",
+                "operationId": "Showeventresource",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        },
+        "/event/checkResources/{id}": {
+            "put": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Check resorces of an Event",
+                "operationId": "checkeventresource",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "resources": {
+                                        "description": "Resources check Array",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "authorization": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "authorization": {
+                "type": "apiKey",
+                "name": "authorization",
+                "in": "header"
+            }
+        }
+    }
+}
