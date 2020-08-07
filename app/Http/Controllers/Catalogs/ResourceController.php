@@ -165,7 +165,7 @@ class ResourceController extends Controller
             $this->validate($request, [
                 'name' => 'required|max:45|unique:resource',
                 'description' => 'required',
-                'owner'=> 'integer|required',
+                'owner'=> 'required',
                 'patrimonial_id' =>'string|max:45|required',
                 'type_id'=>'integer|required',
                 'remark' => 'string|required'
@@ -287,7 +287,7 @@ class ResourceController extends Controller
             $this->validate($request, [
                 'name' => 'required|unique:resource,name,'.$id,
                 'description' => 'required',
-                'owner'=> 'integer|required',
+                'owner'=> 'required',
                 'patrimonial_id' =>'string|max:45|required',
                 'type_id'=>'integer|required',
                 'remark' => 'string|required'
