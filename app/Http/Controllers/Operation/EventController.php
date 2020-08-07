@@ -300,7 +300,8 @@ class EventController extends Controller
                 'created_by' => 'required|integer',
                 'type' => 'required|integer',
                 'tag' => 'required|integer',
-                'guests' => 'required'
+                'guests' => 'required',
+                'resources' => 'required'
             ]);
 
             $input = $request->all();
