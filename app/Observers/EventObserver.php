@@ -10,9 +10,6 @@ trait EventObserver{
         parent::boot();
 
         static::created(function ($event){
-
-            Log::info('Evento Creado: '.$event->id);
-
             $myRequest = new \Illuminate\Http\Request();
             $myRequest->setMethod('POST');
             $myRequest->request->add(['notification_type' => 'create']);
@@ -26,8 +23,6 @@ trait EventObserver{
         });
 
         static::updated(function ($event){
-            Log::info('Evento Actualizado: '.$event->id);
-
             $myRequest = new \Illuminate\Http\Request();
             $myRequest->setMethod('POST');
             $myRequest->request->add(['notification_type' => 'update']);
