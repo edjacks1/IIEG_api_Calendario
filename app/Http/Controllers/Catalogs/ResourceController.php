@@ -34,7 +34,7 @@ class ResourceController extends Controller
      */
     public function index(Request $request)
     {
-            $resources= Resource::all();
+            $resources= Resource::with('type')->get();
 
             if(!is_null($resources))
             {
@@ -173,13 +173,13 @@ class ResourceController extends Controller
     
             $input = $request->all();
 
-            $resource = new Resource();
-            $resource->name = $input['name'];
-            $resource->description = $input['description'];
-            $resource->owner = $input['owner'];
+            $resource                 = new Resource();
+            $resource->name           = $input['name'];
+            $resource->description    = $input['description'];
+            $resource->owner          = $input['owner'];
             $resource->patrimonial_id = $input['patrimonial_id'];
-            $resource->type_id = $input['type_id'];
-            $resource->remark = $input['remark'];
+            $resource->type_id        = $input['type_id'];
+            $resource->remark         = $input['remark'];
             $resource->status=1;
 
             $resource->save();

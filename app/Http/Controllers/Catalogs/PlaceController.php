@@ -34,16 +34,15 @@ class PlaceController extends Controller
      */
     public function index(Request $request)
     {
-            $places= Place::all();
+        $places= Place::with('organization')->get();
 
-            if(!is_null($places))
-            {
-                return response()->json(['status'=>true, 'data' => $places]);
-            }
-            else{
-                return response()->json(['status'=>false, 'data' => [], 'message' => 'Data not found']);
-            }
-         
+        if(!is_null($places))
+        {
+            return response()->json(['status'=>true, 'data' => $places]);
+        }
+        else{
+            return response()->json(['status'=>false, 'data' => [], 'message' => 'Data not found']);
+        }    
     }
 
     /**
@@ -153,20 +152,22 @@ class PlaceController extends Controller
     {
         try {
             $this->validate($request, [
-                'name' => 'required|max:50|unique:place',
-                'description' => 'max:150|required',
-                'x'=> 'numeric',
-                'y' =>'numeric'
+                'name'            => 'required|max:50|unique:place',
+                'description'     => 'max:150|required',
+                'x'               => 'numeric',
+                'y'               => 'numeric',
+                'organization_id' => 'required|integer'
             ]);
     
             $input = $request->all();
 
-            $place = new Place();
-            $place->name = $input['name'];
-            $place->description = $input['description'];
-            $place->x = $input['x'];
-            $place->y = $input['y'];
-            $place->status=1;
+            $place                   = new Place();
+            $place->name             = $input['name'];
+            $place->description      = $input['description'];
+            $place->x                = $input['x'];
+            $place->y                = $input['y'];
+            $place->organization_id  = $input['organization_id'];
+            $place->status           = 1;
 
             $place->save();
 
@@ -261,21 +262,22 @@ class PlaceController extends Controller
         try {
 
             $this->validate($request, [
-                'name' => 'required|max:50|unique:place,name,'.$id,
-                'description' => 'max:150|required',
-                'x'=> 'numeric',
-                'y' =>'numeric'
+                'name'            => 'required|max:50|unique:place,name,'.$id,
+                'description'     => 'max:150|required',
+                'x'               => 'numeric',
+                'y'               => 'numeric',
+                'organization_id' => 'required|integer'
             ]);
 
             $place = Place::where('id', '=' , $id)->first();
 
             if(!is_null($place))
             {
-                $place->name = $request->post('name');
-                $place->description = $request->post('description');
-                $place->x = $request->post('x');
-                $place->y = $request->post('y');
-                
+                $place->name             = $request->post('name');
+                $place->description      = $request->post('description');
+                $place->x                = $request->post('x');
+                $place->y                = $request->post('y');
+                $place->organization_id  = $input['organization_id'];
                 $place->save();
 
                 return response()->json([

@@ -20,8 +20,8 @@ class Organization extends Model
         'status','x','y'
     ];
 
-    public function places()
-    {
-        return $this->hasMany('App\Models\OrganizationPlace','organization_id','id');
-    }
+    // public function places()
+    // {
+    //     return $this->hasMany('App\Models\OrganizationPlace','organization_id','id');
+    // }
 }

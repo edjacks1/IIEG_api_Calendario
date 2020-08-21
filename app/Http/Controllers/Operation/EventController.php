@@ -297,7 +297,6 @@ class EventController extends Controller
                 'place_id' => 'required|integer',
                 'start_at' => 'required|date_format:Y-m-d H:i:s',
                 'end_at' => 'required|date_format:Y-m-d H:i:s',
-                'created_by' => 'required|integer',
                 'type' => 'required|integer',
                 'tag' => 'required|integer',
                 'guests' => 'required',
@@ -306,16 +305,16 @@ class EventController extends Controller
 
             $input = $request->all();
 
-            $event = new Event();
-            $event->name = $input['name'];
+            $event              = new Event();
+            $event->name        = $input['name'];
             $event->description = $input['description'];
-            $event->place_id = $input['place_id'];
-            $event->start_at = $input['start_at'];
-            $event->end_at = $input['end_at'];
-            $event->created_by = $input['created_by'];
-            $event->type = $input['type'];
-            $event->tag = $input['tag'];
-            $event->status = 1;
+            $event->place_id    = $input['place_id'];
+            $event->start_at    = $input['start_at'];
+            $event->end_at      = $input['end_at'];
+            $event->created_by  = $request->auth->id;
+            $event->type        = $input['type'];
+            $event->tag         = $input['tag'];
+            $event->status      = 1;
 
             $event->save();
 

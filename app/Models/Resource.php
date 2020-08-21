@@ -23,6 +23,6 @@ class Resource extends Model
 
     public function type()
     {
-        return $this->hasOne('App\Models\ResourceType','type_id','id');
+        return $this->hasOne('App\Models\ResourceType','id','type_id');
     }
 }

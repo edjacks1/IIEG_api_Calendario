@@ -25,22 +25,6 @@ class CreateTableOrganization extends Migration
             $table->timestamps();
         });
 
-        Schema::create('organization_place', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('organization_id')->unsigned();
-            $table->integer('place_id')->unsigned();
-        });
-
-        Schema::table('organization_place', function (Blueprint $table) {
-            $table->foreign('organization_id')
-              ->references('id')
-              ->on('organization');
-
-            $table->foreign('place_id')
-            ->references('id')
-            ->on('place');
-        });
-
         Schema::table('user', function (Blueprint $table) {
             $table->foreign('organization_id')
               ->references('id')

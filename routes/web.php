@@ -62,7 +62,7 @@ $router->group(
         $router->post('/organization', ['middleware' => 'req.permission:create_organization', 'as' => 'organization.store', 'uses' => 'Catalogs\OrganizationController@store']);
         $router->put('/organization/{id}', ['middleware' => 'req.permission:edit_organization', 'as' => 'organization.update', 'uses' => 'Catalogs\OrganizationController@update']);
         $router->delete('/organization/{id}', ['middleware' => 'req.permission:delete_organization', 'as' => 'organization.delete', 'uses' => 'Catalogs\OrganizationController@destroy']);
-        $router->put('/organization/assignPlace/{id}', ['middleware' => 'req.permission:edit_organization', 'as' => 'role.assingplaces', 'uses' => 'Catalogs\OrganizationController@assignPlace']);
+        // $router->put('/organization/assignPlace/{id}', ['middleware' => 'req.permission:edit_organization', 'as' => 'role.assingplaces', 'uses' => 'Catalogs\OrganizationController@assignPlace']);
 
         //Place Routes
         $router->get('/place', ['middleware' => 'req.permission:see_place', 'as' => 'place.index', 'uses' => 'Catalogs\PlaceController@index']);

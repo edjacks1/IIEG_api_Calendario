@@ -35,7 +35,7 @@ class OrganizationController extends Controller
      */
     public function index(Request $request)
     {
-            $organizations= Organization::with('places.place')->get();
+            $organizations= Organization::all();
 
             if(!is_null($organizations))
             {
@@ -174,13 +174,13 @@ class OrganizationController extends Controller
     
             $input = $request->all();
 
-            $organization = new organization();
-            $organization->name = $input['name'];
+            $organization               = new organization();
+            $organization->name         = $input['name'];
             $organization->abbreviation = $input['abbreviation'];
-            $organization->phone = $input['phone'];
-            $organization->email = $input['email'];
-            $organization->x = $input['x'];
-            $organization->y = $input['y'];
+            $organization->phone        = $input['phone'];
+            $organization->email        = $input['email'];
+            $organization->x            = $input['x'];
+            $organization->y            = $input['y'];
             $organization->status=1;
 
             $organization->save();
@@ -445,44 +445,44 @@ class OrganizationController extends Controller
      *     }
      * )
      */
-    public function assignPlace(Request $request, $id){
+    // public function assignPlace(Request $request, $id){
         
-        try {
+    //     try {
 
-            $this->validate($request, [
-                'places' => 'required'
-            ]);
+    //         $this->validate($request, [
+    //             'places' => 'required'
+    //         ]);
 
-            $organization = Organization::where('id', $id)->first();
+    //         $organization = Organization::where('id', $id)->first();
 
-            if(!is_null($organization))
-            {
-                $places=$request->post('places');
-                OrganizationPlace::where('organization_id',$organization->id)->delete();
+    //         if(!is_null($organization))
+    //         {
+    //             $places=$request->post('places');
+    //             OrganizationPlace::where('organization_id',$organization->id)->delete();
                 
-                foreach($places as $place)
-                {
-                    $organizationplace= new OrganizationPlace();
-                    $organizationplace->organization_id=$organization->id;
-                    $organizationplace->place_id=$place;
+    //             foreach($places as $place)
+    //             {
+    //                 $organizationplace= new OrganizationPlace();
+    //                 $organizationplace->organization_id=$organization->id;
+    //                 $organizationplace->place_id=$place;
 
-                    $organizationplace->save();
-                }
+    //                 $organizationplace->save();
+    //             }
 
-                return response()->json([
-                    'status' => true,'message' => 'Organization Updated Succesfully'
-                    ]);
+    //             return response()->json([
+    //                 'status' => true,'message' => 'Organization Updated Succesfully'
+    //                 ]);
                 
-            }
-            else {
-                return response()->json(['status'=>false, 'data' => [], 'message' => 'Organization not found']);
-            }
-        } catch (\Throwable $th) {
+    //         }
+    //         else {
+    //             return response()->json(['status'=>false, 'data' => [], 'message' => 'Organization not found']);
+    //         }
+    //     } catch (\Throwable $th) {
 
-            return response()->json([
-                'status' => false,'message' => 'Error Ocurred','data' => $th->getMessage()
-                ],400);
-        }
+    //         return response()->json([
+    //             'status' => false,'message' => 'Error Ocurred','data' => $th->getMessage()
+    //             ],400);
+    //     }
 
-    }
+    // }
 }
