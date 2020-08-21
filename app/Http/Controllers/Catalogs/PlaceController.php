@@ -260,7 +260,6 @@ class PlaceController extends Controller
     public function update($id,Request $request)
     {
         try {
-
             $this->validate($request, [
                 'name'            => 'required|max:50|unique:place,name,'.$id,
                 'description'     => 'max:150|required',
@@ -277,7 +276,7 @@ class PlaceController extends Controller
                 $place->description      = $request->post('description');
                 $place->x                = $request->post('x');
                 $place->y                = $request->post('y');
-                $place->organization_id  = $input['organization_id'];
+                $place->organization_id  = $request->post('organization_id');
                 $place->save();
 
                 return response()->json([
