@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Observers\EventObserver;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -48,5 +49,21 @@ class Event extends Model
     public function tag()
     {
         return $this->hasOne('App\Models\EventTag', 'id', 'tag');
+    }
+
+    public function getNotAvaiblePlacesIDs($startDate,$endDate){
+        $startDate = Carbon::parse($startDate)->format('Y-m-d H:i:s');
+        $endDate   = Carbon::parse($endDate)->format('Y-m-d H:i:s');
+
+        return Event::all()->filter(function($item) use ($startDate,$endDate) {
+            if ( 
+                    (($item->start_at    >= $startDate ) && ($item->end_at      <= $endDate)) || 
+                    (($startDate >= $item->start_at    ) && ($endDate   <= $item->end_at   )) ||
+                    (($startDate >= $item->start_at    ) && ($startDate <= $item->end_at   )) || 
+                    (($endDate   >= $item->start_at    ) && ($endDate   <= $item->end_at   ))
+                 ){
+              return $item;
+            }
+        })->pluck('place_id');
     }
 }

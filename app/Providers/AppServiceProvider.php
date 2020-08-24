@@ -12,8 +12,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
+    public function register(){
         Schema::defaultStringLength(191);
+    }
+
+    public function boot(){
+        date_default_timezone_set('Asia/Calcutta');
     }
 }

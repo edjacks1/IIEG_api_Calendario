@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\EventGuest;
 use App\Models\EventOrganizer;
 use App\Models\EventResource;
+use App\Models\Place;
 use DateInterval;
 use DateTime;
 use Illuminate\Support\Facades\Mail;
@@ -16,6 +17,27 @@ use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
 {
+
+    function __construct() {
+        $this->events = new Event;
+    }
+
+    public function getAvailablePlaces(Request $request){
+        try{
+            $this->validate($request, [
+                'start_at'        => 'required|date_format:Y-m-d H:i:s',
+                'end_at'          => 'required|date_format:Y-m-d H:i:s',
+            ]);
+            $places = Place::whereNotIn('id',$this->events->getNotAvaiblePlacesIDs($request->start_at, $request->end_at))->get();
+            return response()->json(['status' => true, 'data' => $places]);
+        }catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Error Ocurred',
+                'data' => $th->getMessage()
+            ], 400);
+        }
+    }
 
     /**
      * @OA\Post(
@@ -90,19 +112,15 @@ class EventController extends Controller
      *     }
      * )
      */
-    public function index(Request $request)
-    {
-
+    public function index(Request $request){
         try {
             ///busqueda de eventos entre fechas, por organizador, por creador, por lugar,por invitado
             $this->validate($request, [
-                'start_at' => 'required|date_format:Y-m-d H:i:s',
-                'end_at' => 'required|date_format:Y-m-d H:i:s',
-                'created_by' => 'integer',
-                'type' => 'integer',
-                'guest' => 'integer',
-                'organizer' => 'integer',
-                'resources_check' => 'integer'
+                'start_at'        => 'required|date_format:Y-m-d H:i:s',
+                'end_at'          => 'required|date_format:Y-m-d H:i:s',
+                'created_by'      => 'integer',
+                'guest'           => 'integer',
+                'resources_check' => 'integer',
             ]);
 
             $events = Event::with('tag')->whereBetween('start_at', [$request->post('start_at'), $request->post('end_at')]);
@@ -110,20 +128,20 @@ class EventController extends Controller
             if ((!is_null($request->post('created_by'))) && $request->post('created_by') > 0)
                 $events->where('created_by', $request->post('created_by'));
 
-            if ((!is_null($request->post('resources_check'))))
+            if ( (!is_null($request->post('resources_check'))) )
                 $events->where('resources_check', $request->post('resources_check'));
 
-            if ((!is_null($request->post('type'))) && $request->post('type') > 0)
-                $events->where('type', $request->post('type'));
+            if ((!is_null($request->post('type'))) && sizeof($request->post('type')) > 0)
+                $events->whereIn('type', $request->post('type'));
 
             if ((!is_null($request->post('guest'))) && $request->post('guest') > 0) {
                 $events->join('event_guest', 'event_guest.event_id', '=', 'event.id')
                     ->where('event_guest.guest_id', $request->post('guest'));
             }
 
-            if ((!is_null($request->post('organizer'))) && $request->post('organizer') > 0) {
+            if ((!is_null($request->post('organizer'))) && sizeof($request->post('organizer')) > 0) {
                 $events->join('event_organizer', 'event_organizer.event_id', '=', 'event.id')
-                    ->where('event_organizer.user_id', $request->post('organizer'));
+                    ->whereIn('event_organizer.user_id', $request->post('organizer'));
             }
 
             $events->get();
@@ -292,19 +310,25 @@ class EventController extends Controller
 
         try {
             $this->validate($request, [
-                'name' => 'required|max:50',
+                'name'        => 'required|max:50',
                 'description' => 'required|max:150',
-                'place_id' => 'required|integer',
-                'start_at' => 'required|date_format:Y-m-d H:i:s',
-                'end_at' => 'required|date_format:Y-m-d H:i:s',
-                'type' => 'required|integer',
-                'tag' => 'required|integer',
-                'guests' => 'required',
-                'resources' => 'required'
+                'place_id'    => 'required|integer',
+                'start_at'    => 'required|date_format:Y-m-d H:i:s',
+                'end_at'      => 'required|date_format:Y-m-d H:i:s',
+                'type'        => 'required|integer',
+                'tag'         => 'required|integer',
+                'guests'      => 'required',
+                'resources'   => 'required'
             ]);
 
             $input = $request->all();
 
+            $notAvaiblePlaces = $this->events->getNotAvaiblePlacesIDs($request->start_at, $request->end_at);
+                
+            if(in_array($input['place_id'],(array)$notAvaiblePlaces)){
+                return response()->json(['status' => false,'message' => "Place with ID: $request->place_id is not avaible." ]);
+            }
+            
             $event              = new Event();
             $event->name        = $input['name'];
             $event->description = $input['description'];

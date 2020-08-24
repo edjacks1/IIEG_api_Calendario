@@ -88,6 +88,7 @@ $router->group(
 
         //Event Routes
         //Resource Routes
+        $router->post('/event/getAvailablePlaces', ['middleware' => 'req.permission:see_event', 'as' => 'event.getAvailablePlaces', 'uses' => 'Operation\EventController@getAvailablePlaces']);
         $router->post('/event/getEvents', ['middleware' => 'req.permission:see_event', 'as' => 'event.index', 'uses' => 'Operation\EventController@index']);
         $router->get('/event/{id}', ['middleware' => 'req.permission:see_event', 'as' => 'event.show', 'uses' => 'Operation\EventController@show']);
         $router->post('/event', ['middleware' => 'req.permission:create_event', 'as' => 'event.store', 'uses' => 'Operation\EventController@store']);
