@@ -180,7 +180,6 @@ class ResourceController extends Controller
             $resource->patrimonial_id = $input['patrimonial_id'];
             $resource->type_id        = $input['type_id'];
             $resource->remark         = $input['remark'];
-            $resource->status=1;
 
             $resource->save();
 
@@ -371,15 +370,9 @@ class ResourceController extends Controller
     public function destroy($id)
     {
         try {
-            $resource=Resource::find($id);
-
-            $resource->status=0;
-            $resource->save();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Resource Deleted Succesfully'
-            ]);
+            Resource::destroy($id);
+            
+            return response()->json(['status' => true,'message' => 'Resource Deleted Succesfully']);
         } catch (\Throwable $th) {
             
             return response()->json([

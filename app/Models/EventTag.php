@@ -3,22 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EventTag extends Model
 {
-    protected $table="event_tag";
 
+    use SoftDeletes;
+
+    protected $table      = "event_tag";
     protected $primaryKey = 'id';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'color','status'
-    ];
-
-    protected $hidden = [
-        'created_at', 'updated_at'
-    ];
+    protected $fillable   = ['name', 'color','status'];
+    protected $hidden     = ['created_at', 'updated_at'];
 }

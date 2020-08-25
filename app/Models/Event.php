@@ -13,11 +13,7 @@ class Event extends Model
     protected $table = "event";
 
     protected $primaryKey = 'id';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+ 
     protected $fillable = [
         'name', 'description',
         'place_id', 'start_at',
@@ -43,12 +39,20 @@ class Event extends Model
 
     public function type()
     {
-        return $this->hasOne('App\Models\EventType', 'id', 'tag');
+        return $this->hasOne('App\Models\EventType', 'id', 'tag')->withTrashed();
     }
 
     public function tag()
     {
-        return $this->hasOne('App\Models\EventTag', 'id', 'tag');
+        return $this->hasOne('App\Models\EventTag', 'id', 'tag')->withTrashed();
+    }
+
+    public function creator(){
+        return $this->hasOne('App\User','id','created_by')->withTrashed();
+    }
+
+    public function place(){
+        return $this->hasOne(Place::class,'id','place_id')->withTrashed();
     }
 
     public function getNotAvaiblePlacesIDs($startDate,$endDate){
@@ -61,7 +65,7 @@ class Event extends Model
                     (($startDate >= $item->start_at    ) && ($endDate   <= $item->end_at   )) ||
                     (($startDate >= $item->start_at    ) && ($startDate <= $item->end_at   )) || 
                     (($endDate   >= $item->start_at    ) && ($endDate   <= $item->end_at   ))
-                 ){
+                ){
               return $item;
             }
         })->pluck('place_id');

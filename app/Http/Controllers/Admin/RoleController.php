@@ -305,11 +305,7 @@ class RoleController extends Controller
     {
         try {
             Role::destroy($id);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Role Deleted Succesfully'
-            ]);
+            return response()->json(['status' => true,'message' => 'Role Deleted Succesfully']);
         } catch (\Throwable $th) {
             
             return response()->json([

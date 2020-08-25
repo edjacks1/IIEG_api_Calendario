@@ -181,11 +181,8 @@ class OrganizationController extends Controller
             $organization->email        = $input['email'];
             $organization->x            = $input['x'];
             $organization->y            = $input['y'];
-            $organization->status=1;
-
             $organization->save();
 
-    
             return response()->json([
                 'status' => true,
                 'message' => 'Organization Created Succesfully',
@@ -372,15 +369,8 @@ class OrganizationController extends Controller
     public function destroy($id)
     {
         try {
-            $organization=Organization::find($id);
-
-            $organization->status=0;
-            $organization->save();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Organization Deleted Succesfully'
-            ]);
+            Organization::destroy($id);
+            return response()->json(['status' => true,'message' => 'Organization Deleted Succesfully']);
         } catch (\Throwable $th) {
             
             return response()->json([

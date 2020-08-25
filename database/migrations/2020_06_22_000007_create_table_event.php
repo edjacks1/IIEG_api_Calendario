@@ -17,7 +17,7 @@ class CreateTableEvent extends Migration
             $table->increments('id');
             $table->string('name', 50);
             $table->string('description', 150);
-            $table->integer('status');
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -31,6 +31,7 @@ class CreateTableEvent extends Migration
             $table->dateTime('end_at');
             $table->integer('created_by')->unsigned();
             $table->integer('status');
+            $table->softDeletes();
             $table->tinyInteger('resources_check')->default(0);
             $table->integer('type')->unsigned();
             $table->integer('tag')->unsigned();

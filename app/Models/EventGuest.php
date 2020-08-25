@@ -22,11 +22,11 @@ class EventGuest extends Model
 
     public function event()
     {
-        return $this->belongsTo('App\Models\Event','event_id','id');
+        return $this->belongsTo('App\Models\Event','event_id','id')->withTrashed();
     }
 
     public function guest()
     {
-        return $this->belongsTo('App\User','guest_id','id');
+        return $this->belongsTo('App\User','guest_id','id')->withTrashed();
     }
 }

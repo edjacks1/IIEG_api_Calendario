@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableResource extends Migration
+class CreateTableResourceType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateTableResource extends Migration
      */
     public function up()
     {
-        Schema::create('resource', function (Blueprint $table) {
+        Schema::create('resource_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('owner');
-            $table->string('patrimonial_id');
-            $table->integer('type_id')->unsigned();
             $table->string('name',45);
-            $table->mediumText('description');
-            $table->mediumText('remark');
-            $table->integer('status');
+            $table->string('description',150);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateTableResource extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resource');
+        Schema::dropIfExists('resource_type');
     }
 }

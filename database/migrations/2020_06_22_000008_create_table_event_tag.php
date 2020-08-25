@@ -17,7 +17,7 @@ class CreateTableEventTag extends Migration
             $table->increments('id');
             $table->string('name',50);
             $table->string('color',15);
-            $table->integer('status');
+            $table->softDeletes();
             $table->timestamps();
         });
 

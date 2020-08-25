@@ -3,26 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resource extends Model
 {
-    protected $table="resource";
 
+    use SoftDeletes;
+
+    protected $table      = "resource";
     protected $primaryKey = 'id';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
-        'owner', 'patrimonial_id',
-        'type_id', 'name',
-        'description', 'remark',
-        'status'
+        'owner', 
+        'patrimonial_id',
+        'type_id', 
+        'name',
+        'description', 
+        'remark'
     ];
 
-    public function type()
-    {
-        return $this->hasOne('App\Models\ResourceType','id','type_id');
+    public function type(){
+        return $this->hasOne('App\Models\ResourceType','id','type_id')->withTrashed();
     }
 }

@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTableOrganization extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('organization', function (Blueprint $table) {
@@ -19,9 +15,9 @@ class CreateTableOrganization extends Migration
             $table->string('abbreviation',45);
             $table->string('phone',45);
             $table->string('email',45);
-            $table->integer('status');
             $table->double('x');
             $table->double('y');
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -33,13 +29,7 @@ class CreateTableOrganization extends Migration
 
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
+    public function down(){
         Schema::dropIfExists('organization');
     }
 }

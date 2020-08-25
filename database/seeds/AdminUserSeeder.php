@@ -19,7 +19,6 @@ class AdminUserSeeder extends Seeder
         $organization->abbreviation= "IIEG";
         $organization->phone= "37771770";
         $organization->email= "contacto@iieg.gob.mx";
-        $organization->status= 1;
         $organization->x= 20.6840736;
         $organization->y= -103.4471341;
 

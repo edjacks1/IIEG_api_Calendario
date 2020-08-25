@@ -167,7 +167,6 @@ class PlaceController extends Controller
             $place->x                = $input['x'];
             $place->y                = $input['y'];
             $place->organization_id  = $input['organization_id'];
-            $place->status           = 1;
 
             $place->save();
 
@@ -341,18 +340,11 @@ class PlaceController extends Controller
      * )
      */
 
-    public function destroy($id)
-    {
+    public function destroy($id){
         try {
-            $place=Place::find($id);
-
-            $place->status=0;
-            $place->save();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Place Deleted Succesfully'
-            ]);
+            Place::destroy($id);
+            
+            return response()->json(['status' => true,'message' => 'Place Deleted Succesfully']);
         } catch (\Throwable $th) {
             
             return response()->json([

@@ -3,18 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ResourceType extends Model
 {
-    protected $table="resource_type";
 
+    use SoftDeletes;
+
+    protected $table      = "resource_type";
     protected $primaryKey = 'id';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'description','status'
-    ];
+    protected $fillable   = ['name', 'description','status'];
 }

@@ -12,12 +12,12 @@ class CreateTablePlace extends Migration
         Schema::dropIfExists('place');
         Schema::create('place', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',50);
+            $table->string('name',150);
             $table->double('x');
             $table->double('y');
             $table->string('description',150);
-            $table->integer('status');
             $table->integer('organization_id')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('organization_id')->references('id')->on('organization');

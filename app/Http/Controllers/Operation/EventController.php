@@ -114,37 +114,25 @@ class EventController extends Controller
      */
     public function index(Request $request){
         try {
-            ///busqueda de eventos entre fechas, por organizador, por creador, por lugar,por invitado
             $this->validate($request, [
                 'start_at'        => 'required|date_format:Y-m-d H:i:s',
                 'end_at'          => 'required|date_format:Y-m-d H:i:s',
-                'created_by'      => 'integer',
-                'guest'           => 'integer',
-                'resources_check' => 'integer',
             ]);
 
-            $events = Event::with('tag')->whereBetween('start_at', [$request->post('start_at'), $request->post('end_at')]);
+            $events = Event::with('tag')->whereBetween('start_at', [$request->start_at, $request->end_at]);
 
-            if ((!is_null($request->post('created_by'))) && $request->post('created_by') > 0)
-                $events->where('created_by', $request->post('created_by'));
-
-            if ( (!is_null($request->post('resources_check'))) )
-                $events->where('resources_check', $request->post('resources_check'));
-
-            if ((!is_null($request->post('type'))) && sizeof($request->post('type')) > 0)
-                $events->whereIn('type', $request->post('type'));
-
-            if ((!is_null($request->post('guest'))) && $request->post('guest') > 0) {
-                $events->join('event_guest', 'event_guest.event_id', '=', 'event.id')
-                    ->where('event_guest.guest_id', $request->post('guest'));
+            if( !is_null($request->place) && sizeof($request->place) > 0){
+                $events->whereIn('place_id', $request->place);
             }
-
-            if ((!is_null($request->post('organizer'))) && sizeof($request->post('organizer')) > 0) {
-                $events->join('event_organizer', 'event_organizer.event_id', '=', 'event.id')
-                    ->whereIn('event_organizer.user_id', $request->post('organizer'));
+            if( !is_null($request->organizer) && sizeof($request->organizer) > 0){
+                $events->join('event_organizer', 'event_organizer.event_id', '=', 'event.id')->whereIn('event_organizer.user_id', $request->organizer);
+            }
+            if( !is_null($request->type) && sizeof($request->type) > 0 ){
+                $events->whereIn('type', $request->type);
             }
 
             $events->get();
+
             if ($events->count() > 0) {
                 return response()->json(['status' => true, 'data' => $events->get()]);
             } else {
@@ -194,7 +182,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Event::with(['guests.guest', 'organizers.organizer', 'resources.resource', 'type', 'tag'])->find($id);
+        $event = Event::with(['place.organization','creator','guests.guest', 'organizers.organizer', 'resources.resource', 'type', 'tag'])->find($id);
 
         if (!is_null($event)) {
             return response()->json(['status' => true, 'data' => $event]);
@@ -339,7 +327,6 @@ class EventController extends Controller
             $event->type        = $input['type'];
             $event->tag         = $input['tag'];
             $event->status      = 1;
-
             $event->save();
 
             ///Ciclos para registrar asistentes y recursos
@@ -525,7 +512,6 @@ class EventController extends Controller
                 $event->type = $input['type'];
                 $event->tag = $input['tag'];
                 $event->status = 1;
-
                 $event->save();
 
                 ///Ciclos para registrar asistentes y recursos
@@ -619,15 +605,8 @@ class EventController extends Controller
     public function destroy($id)
     {
         try {
-            $event = Event::find($id);
-
-            $event->status = 0;
-            $event->save();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Event Deleted Succesfully'
-            ]);
+            Event::destroy($id);
+            return response()->json(['status' => true,'message' => 'Event Deleted Succesfully']);
         } catch (\Throwable $th) {
 
             return response()->json([

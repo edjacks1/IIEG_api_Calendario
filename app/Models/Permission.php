@@ -25,6 +25,6 @@ class Permission extends Model
 
     public function rolePermission()
     {
-        return $this->belongsTo('App\Models\RolePermission','permission_id');
+        return $this->belongsTo('App\Models\RolePermission','permission_id')->withTrashed();
     }
 }

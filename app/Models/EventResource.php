@@ -22,11 +22,11 @@ class EventResource extends Model
 
     public function event()
     {
-        return $this->belongsTo('App\Models\Event','event_id','id');
+        return $this->belongsTo('App\Models\Event','event_id','id')->withTrashed();
     }
 
     public function resource()
     {
-        return $this->belongsTo('App\Models\Resource','resource_id','id');
+        return $this->belongsTo('App\Models\Resource','resource_id','id')->withTrashed();
     }
 }

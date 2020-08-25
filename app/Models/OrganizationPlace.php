@@ -22,11 +22,11 @@ class OrganizationPlace extends Model
 
     public function organization()
     {
-        return $this->belongsTo('App\Models\Organization','organization_id','id');
+        return $this->belongsTo('App\Models\Organization','organization_id','id')->withTrashed();
     }
 
     public function place()
     {
-        return $this->belongsTo('App\Models\Place','place_id','id');
+        return $this->belongsTo('App\Models\Place','place_id','id')->withTrashed();
     }
 }

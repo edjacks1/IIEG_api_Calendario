@@ -3,20 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
-    protected $table="role";
-
+    use SoftDeletes;
+    
+    protected $table      = "role";
     protected $primaryKey = 'role_id';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'description',
-    ];
+    protected $fillable   = ['name', 'description'];
 
     public function permissions()
     {

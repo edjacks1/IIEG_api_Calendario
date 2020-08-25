@@ -152,11 +152,8 @@ class ResourceTypeController extends Controller
             $resource = new ResourceType();
             $resource->name = $input['name'];
             $resource->description = $input['description'];
-            $resource->status=1;
-
             $resource->save();
 
-    
             return response()->json([
                 'status' => true,
                 'message' => 'Resource Type Created Succesfully',
@@ -315,15 +312,8 @@ class ResourceTypeController extends Controller
     public function destroy($id)
     {
         try {
-            $resource=ResourceType::find($id);
-
-            $resource->status=0;
-            $resource->save();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Resource Type Deleted Succesfully'
-            ]);
+            ResourceType::destroy($id);
+            return response()->json(['status' => true,'message' => 'Resource type Deleted Succesfully']);
         } catch (\Throwable $th) {
             
             return response()->json([

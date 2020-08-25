@@ -22,11 +22,11 @@ class EventOrganizer extends Model
 
     public function event()
     {
-        return $this->belongsTo('App\Models\Event','event_id','id');
+        return $this->belongsTo('App\Models\Event','event_id','id')->withTrashed();
     }
 
     public function organizer()
     {
-        return $this->belongsTo('App\User','user_id','id');
+        return $this->belongsTo('App\User','user_id','id')->withTrashed();
     }
 }

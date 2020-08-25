@@ -34,16 +34,14 @@ class EventTagController extends Controller
      */
     public function index(Request $request)
     {
-            $types= EventTag::all();
+        $types= EventTag::all();
 
-            if(!is_null($types))
-            {
-                return response()->json(['status'=>true, 'data' => $types]);
-            }
-            else{
-                return response()->json(['status'=>false, 'data' => [], 'message' => 'Data not found']);
-            }
-         
+        if(!is_null($types)){
+            return response()->json(['status'=>true, 'data' => $types ]);
+        }
+        else{
+            return response()->json(['status'=>false, 'data' => [], 'message' => 'Data not found']);
+        }     
     }
 
     /**
@@ -152,8 +150,6 @@ class EventTagController extends Controller
             $type = new EventTag();
             $type->name = $input['name'];
             $type->color = $input['color'];
-            $type->status=1;
-
             $type->save();
 
     
@@ -315,15 +311,8 @@ class EventTagController extends Controller
     public function destroy($id)
     {
         try {
-            $type=EventTag::find($id);
-
-            $type->status=0;
-            $type->save();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Event Tag Deleted Succesfully'
-            ]);
+            EventTag::destroy($id);
+            return response()->json(['status' => true,'message' => 'Event tag Deleted Succesfully']);
         } catch (\Throwable $th) {
             
             return response()->json([

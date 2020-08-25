@@ -152,8 +152,6 @@ class EventTypeController extends Controller
             $event = new EventType();
             $event->name = $input['name'];
             $event->description = $input['description'];
-            $event->status=1;
-
             $event->save();
 
     
@@ -315,15 +313,8 @@ class EventTypeController extends Controller
     public function destroy($id)
     {
         try {
-            $event=EventType::find($id);
-
-            $event->status=0;
-            $event->save();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Event Type Deleted Succesfully'
-            ]);
+            EventType::destroy($id);
+            return response()->json(['status' => true,'message' => 'Event type Deleted Succesfully']);
         } catch (\Throwable $th) {
             
             return response()->json([
