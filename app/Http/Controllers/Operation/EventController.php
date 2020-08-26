@@ -182,9 +182,8 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        // $event = Event::with(['place.organization','creator','guests.guest', 'organizers.organizer', 'resources.resource', 'type', 'tag'])->find($id);
         $event = Event::with(['place.organization','creator','guests.guest', 'organizers.organizer', 'resources.resource', 'type', 'tag'])->find($id);
-        return response()->json(['status' => true, 'data' => $event]);
+
         if (!is_null($event)) {
             return response()->json(['status' => true, 'data' => $event]);
         } else {

@@ -39,7 +39,7 @@ class Event extends Model
 
     public function type()
     {
-        return $this->hasOne('App\Models\EventType', 'id', 'tag')->withTrashed();
+        return $this->hasOne('App\Models\EventType', 'id', 'type')->withTrashed();
     }
 
     public function tag()
