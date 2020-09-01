@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'sendemail'),
+    'default' => 'sendemail',//env('MAIL_MAILER', 'sendemail'),
 
     /*
     |--------------------------------------------------------------------------
