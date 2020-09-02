@@ -746,7 +746,7 @@ class EventController extends Controller
                         'full_name' => $sender->full_name,
                         'notification_type' => $input['notification_type']
                     ];
-                    Log::info('SendNotification', $details);
+                    // Log::info('SendNotification', $details);
                     Mail::to($details['email'])->send(new \App\Mail\EventMail($details));
                 }
 
