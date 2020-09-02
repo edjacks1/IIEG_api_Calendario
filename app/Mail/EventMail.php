@@ -38,7 +38,8 @@ class EventMail extends Mailable
         else if($this->details['notification_type']=='checklist')
             $subject="El Evento ". $this->details['title']." esta proximo a iniciar";
 
-        return $this->subject($subject)
+        return $this->from('calendario@mail.iieg.gob.mx')
+                    ->subject($subject)
                     ->view('mail.event');
     }
 }
